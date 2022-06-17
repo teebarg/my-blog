@@ -5,7 +5,11 @@ tags: ['USV']
 draft: false
 summary: This is a special post summary
 images: []
-layout: PostLayout
+layout: PostNew
 canonicalUrl: canonical/url
 authors: ['sparrowhawk']
 ---
+
+## Overview
+
+A post on the new features introduced in v1.0. New features:
