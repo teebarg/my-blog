@@ -1,6 +1,6 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import ListLayout from '@/layouts/ListLayout'
 import { POSTS_PER_PAGE } from '../../blog'
 
@@ -21,7 +21,17 @@ export async function getStaticProps(context) {
   const {
     params: { page },
   } = context
-  const posts = await getAllFilesFrontMatter('blog')
+  const allPosts = await getAllFilesFrontMatter('blog')
+
+  const posts = await Promise.all(
+    allPosts.map(async (post) => {
+      const authorList = post.authors || ['default']
+      const authorDetails = await getFileBySlug('authors', [authorList[0]])
+      post['author'] = authorDetails.frontMatter
+      return post
+    })
+  )
+
   const pageNumber = parseInt(page)
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),

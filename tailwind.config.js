@@ -25,11 +25,31 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+        // sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        // display: ['Lexend', ...defaultTheme.fontFamily.sans],
+        display: [
+          'Source Code Pro',
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace',
+        ],
       },
       colors: {
         primary: colors.teal,
         gray: colors.neutral,
+        slate: {
+          950: '#16181d',
+          900: '#23272F',
+          800: '#343A46',
+          500: '#404756',
+          400: '#EBECF0',
+        },
+        link: '#149ECA',
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -164,5 +184,9 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
+  ],
 }

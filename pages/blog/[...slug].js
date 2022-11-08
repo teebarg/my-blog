@@ -37,10 +37,10 @@ export async function getStaticProps({ params }) {
     fs.writeFileSync('./public/feed.xml', rss)
   }
 
-  return { props: { post, authorDetails, prev, next } }
+  return { props: { post, authorDetails, prev, next, allPosts } }
 }
 
-export default function Blog({ post, authorDetails, prev, next }) {
+export default function Blog({ post, authorDetails, prev, next, allPosts }) {
   const { mdxSource, toc, frontMatter } = post
 
   return (
@@ -54,6 +54,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
           authorDetails={authorDetails}
           prev={prev}
           next={next}
+          allPosts={allPosts}
         />
       ) : (
         <div className="mt-24 text-center">

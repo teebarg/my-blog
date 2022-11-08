@@ -1,153 +1,151 @@
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
+import Link from 'next/link'
+import Section from '@/components/Section'
 import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
+import PostTitle from '@/components/PostTitle'
+import Prose from '@/components/Prose'
 import siteMetadata from '@/data/siteMetadata'
 import Comments from '@/components/comments'
+import { Navigation } from '@/components/Navigation'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { Fade, Zoom } from 'react-awesome-reveal'
 
 const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `${siteMetadata.siteUrl}/blog/${slug}`
-  )}`
 
-const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+const group = (posts) => {
+  const result = {}
+  posts.forEach((post) => {
+    if (!post.category) return
+    // Object.prototype.hasOwnProperty.call(obj, prop)
+    // if (result.hasOwnProperty(post.category)) {
+    if (Object.prototype.hasOwnProperty.call(result, post.category)) {
+      console.log('here')
+      result[post.category].push(post)
+    } else {
+      result[post.category] = [post]
+    }
+  })
 
-export default function PostNew({ frontMatter, authorDetails, next, prev, children }) {
-  const { slug, fileName, date, title, tags } = frontMatter
+  const grouped = []
+  for (const [title, links] of Object.entries(result)) {
+    grouped.push({ title, links })
+  }
+  return grouped
+}
+
+export default function PostNew({ frontMatter, authorDetails, next, prev, allPosts, children }) {
+  const { slug, fileName, date, title, tags, postImg, readTime } = frontMatter
+  const { name, avatar, about } = authorDetails[0]
+
+  const nav = group(allPosts)
 
   return (
-    <SectionContainer>
+    <Section>
       <BlogSEO
         url={`${siteMetadata.siteUrl}/blog/${slug}`}
         authorDetails={authorDetails}
         {...frontMatter}
       />
       <ScrollTopAndComment />
-      <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
-                  </dd>
-                </div>
-              </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
-            </div>
-          </header>
-          <div
-            className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
-            style={{ gridTemplateRows: 'auto 1fr' }}
-          >
-            <dl className="pt-6 pb-10 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
-              <dt className="sr-only">Authors</dt>
-              <dd>
-                <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-                  {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-2" key={author.name}>
-                      {author.avatar && (
-                        <Image
-                          src={author.avatar}
-                          width="38px"
-                          height="38px"
-                          alt="avatar"
-                          className="h-10 w-10 rounded-full"
-                        />
-                      )}
-                      <dl className="whitespace-nowrap text-sm font-medium leading-5">
-                        <dt className="sr-only">Name</dt>
-                        <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter && (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter.replace('https://twitter.com/', '@')}
-                            </Link>
-                          )}
-                        </dd>
-                      </dl>
-                    </li>
-                  ))}
-                </ul>
-              </dd>
-            </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <p>This is start</p>
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
-              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(slug)} rel="nofollow">
-                  {'Discuss on Twitter'}
-                </Link>
-                {` • `}
-                <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
-              </div>
-              <Comments frontMatter={frontMatter} />
-            </div>
-            <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
-                {tags && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {(next || prev) && (
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {prev && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                    {next && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="pt-4 xl:pt-8">
-                <Link
-                  href="/blog"
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
-            </footer>
+
+      <PostTitle title={title} readTime={readTime} date={date} authorDetails={authorDetails} />
+
+      <div className="max-w-8xl relative mx-auto flex justify-center sm:px-2 lg:px-8 xl:px-12">
+        <div className="hidden lg:relative lg:block lg:flex-none">
+          <div className="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />
+          <div className="sticky top-[4.5rem] -ml-0.5 h-[calc(100vh-4.5rem)] overflow-y-auto py-16 pl-0.5">
+            <div className="absolute top-16 bottom-0 right-0 hidden h-12 w-px bg-gradient-to-t from-slate-800 dark:block" />
+            <div className="absolute top-28 bottom-0 right-0 hidden w-px bg-slate-800 dark:block" />
+            <Navigation navigation={nav} className="w-64 pr-8 xl:w-72 xl:pr-16" />
           </div>
         </div>
-      </article>
-    </SectionContainer>
+        <div className="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+          <article>
+            <Fade duration="2500" triggerOnce>
+              <div className="relative mb-2 h-80">
+                <Image
+                  alt="Post Image"
+                  src={postImg || '/static/images/no-image.jpg'}
+                  layout="fill"
+                  className="rounded-2xl"
+                />
+              </div>
+            </Fade>
+            <Zoom triggerOnce cascade>
+              <Prose>{children}</Prose>
+            </Zoom>
+          </article>
+          <dl className="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+            {prev && (
+              <div>
+                <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
+                  Previous
+                </dt>
+                <dd className="mt-1">
+                  <Link href={`/blog/${prev.slug}`}>
+                    <a className="text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                      &larr; {prev.title}
+                    </a>
+                  </Link>
+                </dd>
+              </div>
+            )}
+            {next && (
+              <div className="ml-auto text-right">
+                <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
+                  Next
+                </dt>
+                <dd className="mt-1">
+                  <Link href={`/blog/${next.slug}`}>
+                    <a className="text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+                      {next.title} &rarr;
+                    </a>
+                  </Link>
+                </dd>
+              </div>
+            )}
+          </dl>
+          <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
+            <Link href={editUrl(fileName)}>
+              <a>{'View on GitHub'}</a>
+            </Link>
+          </div>
+          <Comments frontMatter={frontMatter} />
+        </div>
+        <div className="hidden max-w-xs xl:sticky xl:top-[4.5rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.5rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
+          <div className="space-y-4">
+            <img
+              className="h-20 w-20 rounded-full lg:h-24 lg:w-24"
+              src={avatar || '/static/images/default-profile.jpeg'}
+              alt="avatar"
+            />
+            <div className="space-y-2">
+              <div className="text-xs font-medium lg:text-sm">
+                <h3 className="text-lg font-semibold text-sky-500">{name}</h3>
+                <p className="text-slate-500 dark:text-slate-400">{about}</p>
+              </div>
+            </div>
+          </div>
+          <nav className="mt-6 w-56">
+            {tags && (
+              <>
+                <h2
+                  id="on-this-page-title"
+                  className="font-display text-sm font-medium text-slate-900 dark:text-white"
+                >
+                  Tags
+                </h2>
+                <div className="mt-2 flex flex-wrap gap-y-2">
+                  {tags.map((tag) => (
+                    <Tag key={tag} text={tag} />
+                  ))}
+                </div>
+              </>
+            )}
+          </nav>
+        </div>
+      </div>
+    </Section>
   )
 }

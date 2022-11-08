@@ -1,6 +1,13 @@
-@tailwind base;
+@import 'tailwindcss/base';
+@import './prism.css';
+@import './sourceprocode.css';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './fonts.css'; */
 
 .task-list-item::before {
   @apply hidden;
@@ -22,4 +29,10 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+html,
+body {
+  letter-spacing: 0;
+  word-spacing: -0.15em;
 }

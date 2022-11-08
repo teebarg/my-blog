@@ -2,7 +2,7 @@ import { TagSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import generateRss from '@/lib/generate-rss'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
+import { getAllFilesFrontMatter, getFileBySlug } from '@/lib/mdx'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 import fs from 'fs'
@@ -29,6 +29,15 @@ export async function getStaticProps({ params }) {
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
 
+  const posts = await Promise.all(
+    filteredPosts.map(async (post) => {
+      const authorList = post.authors || ['default']
+      const authorDetails = await getFileBySlug('authors', [authorList[0]])
+      post['author'] = authorDetails.frontMatter
+      return post
+    })
+  )
+
   // rss
   if (filteredPosts.length > 0) {
     const rss = generateRss(filteredPosts, `tags/${params.tag}/feed.xml`)
@@ -37,7 +46,7 @@ export async function getStaticProps({ params }) {
     fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
   }
 
-  return { props: { posts: filteredPosts, tag: params.tag } }
+  return { props: { posts, tag: params.tag } }
 }
 
 export default function Tag({ posts, tag }) {

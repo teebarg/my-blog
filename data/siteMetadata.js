@@ -1,7 +1,7 @@
 const siteMetadata = {
-  title: 'Adeniyi Blog',
+  title: 'Insights',
   author: 'Adeniyi Aderounmu',
-  headerTitle: 'AdeniyiBlog',
+  headerTitle: 'Insights',
   description: 'A blog created by Adeniyi Aderounmu',
   language: 'en-us',
   theme: 'system', // system, dark or light
@@ -13,6 +13,7 @@ const siteMetadata = {
   email: 'neyostica2000@yahoo.com',
   github: 'https://github.com/teebarg',
   linkedin: 'https://www.linkedin.com/in/adeniyi-aderounmu-b46724ba/',
+  website: 'https://adeniyi.in/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
