@@ -16,7 +16,7 @@ export function Navigation({ navigation, className }) {
             <ul className="mt-2 space-y-2 border-l-2 border-slate-100 dark:border-slate-800 lg:mt-4 lg:space-y-4 lg:border-slate-200">
               {section.links.map((link) => (
                 <li key={link.slug} className="relative">
-                  <Link href={'/' + link.slug}>
+                  <Link href={'/blog/' + link.slug}>
                     <a
                       className={clsx(
                         'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full',
