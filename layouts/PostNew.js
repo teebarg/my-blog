@@ -20,7 +20,6 @@ const group = (posts) => {
     // Object.prototype.hasOwnProperty.call(obj, prop)
     // if (result.hasOwnProperty(post.category)) {
     if (Object.prototype.hasOwnProperty.call(result, post.category)) {
-      console.log('here')
       result[post.category].push(post)
     } else {
       result[post.category] = [post]
