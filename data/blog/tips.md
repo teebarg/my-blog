@@ -37,8 +37,22 @@ export default function useDebounce(value, delay) {
 
 ### Create a virtual environment with a specific python version
 
+Create a python virtual environment using a specific python version. This allows you to have different environments in different versions.
+
 ```python
-mkvirtualenv -p python3.9.7 venvname
+mkvirtualenv -p python3.9.7 myenv
+```
+
+This will create a new virtual environment called myenv with Python 3.9 as the default Python interpreter. You can activate the virtual environment by running the following command:
+
+```python
+source myenv/bin/activate
+```
+
+You can then use the python command to verify that the virtual environment is using Python 3.9:
+
+```python
+python -V
 ```
 
 ### Aborting http request in React using fetch
@@ -138,6 +152,47 @@ def audit_log(event, user, level='info'):
 ```
 
 This documentation explains the purpose and parameters of the audit_log() function, as well as its return value (if any). It also provides an example of how to call the function.
+
+### Check Number Tip
+
+We can check if the input of a html element is a number using the function below.
+
+```js
+function isNumber(evt) {
+  if (evt.type === 'keypress') {
+    const charCode = evt.charCode
+    if ((charCode < 48 || charCode > 57) && (charCode !== 46 || !this.context.float)) {
+      evt.preventDefault()
+    }
+  }
+}
+```
+
+### Handling float in Python
+
+To round a float to 2 decimal places in Python, you can use the built-in round function. For example:
+
+```python
+x = 3.14159
+y = round(x, 2)
+print(y)  # prints 3.14
+```
+
+Alternatively, you can use the format function to achieve the same result:
+
+```python
+x = 3.14159
+y = format(x, '.2f')
+print(y)  # prints 3.14
+```
+
+Both of these approaches will give you a string representation of the float rounded to 2 decimal places. If you want to keep the result as a float, you can use the float function to convert the string back to a float.
+
+```python
+x = 3.14159
+y = float(format(x, '.2f'))
+print(y)  # prints 3.14
+```
 
 That's it, you can send in a PR if you have more tips to help.
 
