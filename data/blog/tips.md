@@ -95,6 +95,18 @@ export default function abortExample {
 }
 ```
 
+### ESLint tips
+
+To ignore a specific line or block of code in ESLint, you can add a comment at the beginning of the line or block with the text /_eslint-disable_/. This will tell ESLint to ignore any linting errors for the code that follows. To re-enable linting, add the comment /_eslint-enable_/ at the end of the ignored block.
+
+Alternatively, you can disable a specific rule for a line by adding a comment // eslint-disable-next-line rule-name or you can disable specific rule for a block by adding a comment /_eslint-disable rule-name_/ at the beginning of the block and /_eslint-enable rule-name_/ at the end of the block.
+
+```js
+/*eslint-disable*/
+
+/*eslint-disable rule-name*/
+```
+
 That's it, you can send in a PR if you have more tips to help.
 
 Thank you.
