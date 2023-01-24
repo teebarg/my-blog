@@ -107,6 +107,38 @@ Alternatively, you can disable a specific rule for a line by adding a comment //
 /*eslint-disable rule-name*/
 ```
 
+### Audit Logger Python
+
+To use this function, you'll need to make sure the Flask app is running in your program and that the current_app context is available.
+
+```python
+def audit_log(event, user, level='info'):
+  """
+  Logs an audit event.
+
+  Parameters:
+  - event (str): The event to log.
+  - user (str): The user who triggered the event.
+  - level (str, optional): The log level (default: 'info').
+
+  Example:
+  audit_log('User login', 'jane@example.com')
+  """
+  # Get the current time, the user's IP address, the request method, and the request payload
+  timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+  ip_address = request.remote_addr
+  method = request.method
+  payload = request.get_json()
+
+  # Format the log message
+  message = f'[AUDIT LOG] [{timestamp}] {level}: {event} - User: {user} - IP: {ip_address} - Method: {method} - Payload: {payload}'
+
+  # Write the message to the logger
+  current_app.logger.info(message)
+```
+
+This documentation explains the purpose and parameters of the audit_log() function, as well as its return value (if any). It also provides an example of how to call the function.
+
 That's it, you can send in a PR if you have more tips to help.
 
 Thank you.
