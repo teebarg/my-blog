@@ -194,6 +194,28 @@ y = float(format(x, '.2f'))
 print(y)  # prints 3.14
 ```
 
+## Sleep in Javascript
+
+Here is a simple sleep function in JavaScript that can be used to pause the execution of a script for a specified amount of time:
+
+```js
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+```
+
+The function returns a Promise that resolves after the specified time ms has passed. You can use it in your code like this:
+
+```js
+async function doSomething() {
+  console.log('Doing something...')
+  await sleep(2000)
+  console.log('Done!')
+}
+```
+
+In this example, the doSomething function will log "Doing something..." to the console, then pause for 2 seconds (2000 milliseconds), and finally log "Done!" to the console.
+
 That's it, you can send in a PR if you have more tips to help.
 
 Thank you.
