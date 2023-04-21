@@ -3,6 +3,7 @@ title: Streaming Chat Completion in Flask
 date: '2023-04-21'
 tags: ['python']
 draft: false
+trend: true
 summary: In this blog post, we will explore how to use OpenAI's GPT-3.5 Turbo API to stream chat completions in a Flask application.
 images: []
 layout: PostNew
@@ -10,7 +11,7 @@ canonicalUrl: canonical/url
 postImg: /static/images/stream.webp
 authors: ['beaf']
 readTime: '3 min'
-category: backend
+category: Backend
 ---
 
 In this blog post, we will explore how to use OpenAI's GPT-3.5 Turbo API to stream chat completions in a Flask application. We will create an endpoint `/api/stream` that accepts a POST request and returns a streamed response with a Content-Type of text/plain. Additionally, we will also provide an example of how to integrate the frontend part with the API. Let's dive into the code!
