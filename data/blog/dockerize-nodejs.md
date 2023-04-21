@@ -3,12 +3,12 @@ title: Dockerize Nodejs
 date: '2022-10-28'
 tags: ['Nodejs', 'Javascript', 'devops']
 draft: false
-trend: true
+trend: false
 summary: In the first part of this guide we will create a simple web application in Node.js, then we will build a Docker image for that application, and lastly we will instantiate a container from that image.
 images: []
 layout: PostNew
 canonicalUrl: canonical/url
-postImg: /static/images/dockerize-node.gif
+postImg: /static/images/dockerize-nodejs.jpeg
 authors: ['beaf']
 readTime: '15 min'
 category: Backend

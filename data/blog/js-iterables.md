@@ -7,7 +7,7 @@ summary: The concept of the iterable protocol can be split into the iterable, th
 images: []
 layout: PostNew
 canonicalUrl: canonical/url
-postImg: /static/images/js-iterables.jpeg
+postImg: /static/images/js-iterable.jpeg
 authors: ['beaf']
 readTime: '15 min'
 category: Frontend
