@@ -293,6 +293,51 @@ You can add the title to your like using the example below.
 }
 ```
 
+## Build URL with Query Params
+
+Here's an example of a JavaScript function that takes a base URL, along with an object containing query parameters, and returns the constructed URL with the query parameters appended:
+
+```js
+function buildUrl(baseUrl, queryParams) {
+  let url = baseUrl
+  let firstQueryParam = true
+
+  for (let key in queryParams) {
+    if (queryParams.hasOwnProperty(key)) {
+      if (firstQueryParam) {
+        url += `?${key}=${queryParams[key]}`
+        firstQueryParam = false
+      } else {
+        url += `&${key}=${queryParams[key]}`
+      }
+    }
+  }
+
+  return url
+}
+```
+
+You can use this function like this:
+
+```js
+const baseUrl = '/user'
+const queryParams = {
+  id: 2,
+  type: 'male',
+}
+const newUrl = buildUrl(baseUrl, queryParams)
+console.log(newUrl) // Output: "/user?id=2&type=male"
+```
+
+In this example, the baseUrl is the original URL, and queryParams is an object containing the key-value pairs for the query parameters you want to append to the URL. The function iterates over the keys and values in the queryParams object, constructs the URL by appending the query parameters using the "?" and "&" characters as appropriate, and returns the resulting URL.
+
+## Simple local server
+
+```python
+python3 -m http.server
+
+```
+
 That's it, you can send in a PR if you have more tips to help.
 
 Thank you.
