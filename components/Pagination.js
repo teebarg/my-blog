@@ -6,7 +6,7 @@ export default function Pagination({ totalPages, currentPage }) {
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
 
   return (
-    <div className="space-y-2 pt-8 pb-8 md:space-y-5">
+    <div className="space-y-2 py-8 md:space-y-5">
       <nav
         className="flex items-center justify-between border-t border-gray-200 px-4 py-3 dark:border-slate-400 sm:px-6"
         aria-label="Pagination"

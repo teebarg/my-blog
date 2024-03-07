@@ -34,7 +34,7 @@ export default function Author({ children, frontMatter }) {
               <span className="block text-blue-600">{name} –</span> Making the world a better place
               through quality software.
             </p>
-            <div className="prose max-w-none pt-8 pb-8 text-lg dark:prose-dark xl:col-span-2">
+            <div className="prose max-w-none py-8 text-lg dark:prose-dark xl:col-span-2">
               {children}
             </div>
             <div className="space-y-4">

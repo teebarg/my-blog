@@ -12,7 +12,7 @@ export default function HeroCard() {
           />
           <div className="mix absolute inset-0 bg-slate-700 mix-blend-multiply" />
         </div>
-        <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+        <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <h1 className="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
             <span className="block text-white">Learn development</span>
             <span className="block text-indigo-200">with great articles.</span>

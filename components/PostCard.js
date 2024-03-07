@@ -27,7 +27,7 @@ export default function PostCard({ post }) {
           <Link href={`/blog/${post.slug}`}>
             <a className="block">
               <p className="text-2xl font-semibold text-slate-900 dark:text-white">{post.title}</p>
-              <p className="mt-3 text-base text-slate-500 line-clamp-3 dark:text-slate-400">
+              <p className="mt-3 line-clamp-3 text-base text-slate-500 dark:text-slate-400">
                 {post.summary}
               </p>
             </a>
