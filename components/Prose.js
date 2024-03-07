@@ -5,7 +5,7 @@ function Prose({ as: Component = 'div', className, ...props }) {
     <Component
       className={clsx(
         className,
-        'prose prose-slate max-w-none prose-p:leading-5 dark:prose-invert dark:text-slate-400 dark:prose-p:text-slate-400',
+        'prose prose-slate max-w-none dark:prose-invert prose-p:leading-5 dark:text-slate-400 dark:prose-p:text-slate-400',
         // headings
         'prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal dark:prose-headings:font-semibold dark:prose-headings:text-slate-50 lg:prose-headings:scroll-mt-[8.5rem]',
         // lead

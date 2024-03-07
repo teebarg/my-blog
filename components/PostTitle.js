@@ -9,9 +9,9 @@ export default function PostTitle({ title, date, readTime, authorDetails }) {
   return (
     <div className="overflow-hidden dark:-mb-32 dark:-mt-[4.5rem] dark:bg-slate-900 dark:pb-32 dark:pt-[4.5rem] dark:lg:-mt-[4.75rem] dark:lg:pt-[4.75rem]">
       <div className="py-12 sm:px-2 lg:relative lg:px-0">
-        <div className="items-center gap-y-16 gap-x-8 px-4 lg:px-8 xl:gap-x-16 xl:px-12">
+        <div className="items-center gap-x-8 gap-y-16 px-4 lg:px-8 xl:gap-x-16 xl:px-12">
           <div className="relative z-10 mx-auto max-w-3xl md:text-center lg:text-left">
-            <div className="absolute bottom-full right-full -mr-72 -mb-56 opacity-50">
+            <div className="absolute bottom-full right-full -mb-56 -mr-72 opacity-50">
               <Image
                 src={'/static/images/blur-cyan.png'}
                 alt=""
@@ -53,7 +53,7 @@ export default function PostTitle({ title, date, readTime, authorDetails }) {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-64 -right-80">
+            <div className="absolute -right-80 -top-64">
               <Image
                 src={'/static/images/blur-cyan.png'}
                 alt=""

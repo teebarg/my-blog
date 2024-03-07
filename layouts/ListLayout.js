@@ -24,7 +24,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
           <h1 className="text-5xl font-extrabold">Insights</h1>
           <h1 className="mt-2 text-2xl font-semibold">{title}</h1>
         </div>
-        <div className="sticky top-12 flex space-y-2 bg-white/95 px-4 py-5 pt-6 pb-8 backdrop-blur transition duration-500 dark:bg-slate-900/95 sm:px-6 md:space-y-5 lg:px-8 dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75">
+        <div className="sticky top-12 flex space-y-2 bg-white/95 px-4 py-5 pb-8 pt-6 backdrop-blur transition duration-500 dark:bg-slate-900/95 sm:px-6 md:space-y-5 lg:px-8 dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75">
           <div className="mx-auto flex h-auto w-full flex-none items-center rounded-lg px-4 text-sm ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500 md:w-80 lg:w-96">
             <svg
               aria-hidden="true"
